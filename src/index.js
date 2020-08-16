@@ -1,6 +1,6 @@
 import './index.css'
 
-const canvas = document.getElementById('canvas1')
+const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 
 canvas.width = window.innerWidth
@@ -57,12 +57,19 @@ function drawFlower() {
 }
 
 function animate() {
-  // ctx.clearRect(0, 0, canvas.width, canvas.height)
   drawFlower()
   tick++
   if (tick < 2500) {
-    console.log(tick)
     requestAnimationFrame(animate)
+  } else {
+    document.body.innerHTML = ''
+    document.body.innerHTML = `<h1>Reload?</h1>`
+
+    const temp = document.querySelector('h1')
+    temp.addEventListener('click', function () {
+      window.location.reload()
+      return false
+    })
   }
 }
 animate()
